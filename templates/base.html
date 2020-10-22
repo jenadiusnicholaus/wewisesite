@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    	{%load static%}
+	<meta charset="UTF-8">
+	<title>WorkWise Html Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'line-awesome/css/line-awesome.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/line-awesome-font-awesome.css'%}">
+	<link href="{% static 'font-awesome/css/all.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/fontawesome.css'%}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css'%}">
+</head>
+
+<body >
+
+	<div class="wrapper">
+		<header class="fixed-top">
+			<div class="container">
+				<div class="header-data">
+					<div class="logo">
+						<a href="index.html" title=""><img src="{% static 'icons/logo.png'%}" alt=""></a>
+					</div><!--logo end-->
+					<div class="search-bar">
+						<form>
+							<input type="text" name="search" placeholder="Search...">
+							<button type="submit"><i class="la la-search"></i></button>
+						</form>
+					</div><!--search-bar end-->
+					<nav>
+						<ul>
+							<li>
+								<a href="{% url 'homepage' %}" title="">
+									<span><img src="{% static 'icons/icon1.png' %}" alt=""></span>
+									Home
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'companies'%}" title="">
+									<span><img src="{% static 'icons/icon2.png' %}" alt=""></span>
+									Companies
+								</a>
+								<ul>
+									<li><a href="{% url 'companies'%}" title="">Companies</a></li>
+									<li><a href="company-profile.html" title="">Company Profile</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="{% url 'projects'%}" title="">
+									<span><img src="{% static 'icons/icon3.png'%}" alt=""></span>
+									Projects
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'users_profile'%}" title="">
+									<span><img src="{% static 'icons/icon4.png'%}" alt=""></span>
+									Profiles
+								</a>
+								<ul>
+									<li><a href="user-profile.html" title="">User Profile</a></li>
+									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="{% url 'jobs'%}" title="">
+									<span><img src="{% static 'icons/icon5.png'%}" alt=""></span>
+									Jobs
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'massages'%}" title="" class="not-box-openm">
+									<span><img src="{% static 'icons/icon6.png'%}" alt=""></span>
+									Messages
+								</a>
+								<div class="notification-box msg" id="message">
+									<div class="nt-title">
+										<h4>Setting</h4>
+										<a href="#" title="">Clear all</a>
+									</div>
+									<div class="nott-list">
+										<div class="notfication-details">
+							  				<div class="noty-user-img">
+							  					<img src="{% static 'img/ny-img1.png'%}" alt="">
+							  				</div>
+							  				<div class="notification-info">
+							  					<h3><a href="messages.html" title="">Jassica William</a> </h3>
+							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
+							  					<span>2 min ago</span>
+							  				</div><!--notification-info -->
+						  				</div>
+						  				<div class="notfication-details">
+							  				<div class="noty-user-img">
+							  					<img src="{% static 'img/ny-img2.png'%}" alt="">
+							  				</div>
+							  				<div class="notification-info">
+							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
+							  					<p>Lorem ipsum dolor sit amet.</p>
+							  					<span>2 min ago</span>
+							  				</div><!--notification-info -->
+						  				</div>
+						  				<div class="notfication-details">
+							  				<div class="noty-user-img">
+							  					<img src="{% static 'img/ny-img3.png'%}" alt="">
+							  				</div>
+							  				<div class="notification-info">
+							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
+							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
+							  					<span>2 min ago</span>
+							  				</div><!--notification-info -->
+						  				</div>
+						  				<div class="view-all-nots">
+						  					<a href="messages.html" title="">View All Messsages</a>
+						  				</div>
+									</div><!--nott-list end-->
+								</div><!--notification-box end-->
+							</li>
+							<li>
+								<a href="#" title="" class="not-box-open">
+									<span><img src="{% static 'icons/icon7.png'%}" alt=""></span>
+									Notification
+								</a>
+								<div class="notification-box noti" id="notification">
+									<div class="nt-title">
+										<h4>Setting</h4>
+										<a href="#" title="">Clear all</a>
+									</div>
+									<div class="nott-list">
+										<div class="notfication-details">
+							  				<div class="noty-user-img">
+							  					<img src="{% static 'img/ny-img1.png'%}" alt="">
+							  				</div>
+							  				<div class="notification-info">
+							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<span>2 min ago</span>
+							  				</div><!--notification-info -->
+						  				</div>
+						  				<div class="notfication-details">
+							  				<div class="noty-user-img">
+							  					<img src="{% static 'img/ny-img2.png'%}" alt="">
+							  				</div>
+							  				<div class="notification-info">
+							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<span>2 min ago</span>
+							  				</div><!--notification-info -->
+						  				</div>
+						  				<div class="notfication-details">
+							  				<div class="noty-user-img">
+							  					<img src="{% static 'img/ny-img3.png'%}" alt="">
+							  				</div>
+							  				<div class="notification-info">
+							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<span>2 min ago</span>
+							  				</div><!--notification-info -->
+						  				</div>
+						  				<div class="notfication-details">
+							  				<div class="noty-user-img">
+							  					<img src="{% static 'img/ny-img2.png'%}" alt="">
+							  				</div>
+							  				<div class="notification-info">
+							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<span>2 min ago</span>
+							  				</div><!--notification-info -->
+						  				</div>
+						  				<div class="view-all-nots">
+						  					<a href="#" title="">View All Notification</a>
+						  				</div>
+									</div><!--nott-list end-->
+								</div><!--notification-box end-->
+							</li>
+						</ul>
+					</nav><!--nav end-->
+					<div class="menu-btn">
+						<a href="#" title=""><i class="fa fa-bars"></i></a>
+					</div><!--menu-btn end-->
+					<div class="user-account">
+						<div class="user-info">
+							<img src="{% static 'img/user.png'%}" alt="">
+							<a href="#" title="">John</a>
+							<i class="la la-sort-down"></i>
+						</div>
+						<div class="user-account-settingss" id="users">
+							<h3>Online Status</h3>
+							<ul class="on-off-status">
+								<li>
+									<div class="fgt-sec">
+										<input type="radio" name="cc" id="c5">
+										<label for="c5">
+											<span></span>
+										</label>
+										<small>Online</small>
+									</div>
+								</li>
+								<li>
+									<div class="fgt-sec">
+										<input type="radio" name="cc" id="c6">
+										<label for="c6">
+											<span></span>
+										</label>
+										<small>Offline</small>
+									</div>
+								</li>
+							</ul>
+							<h3>Custom Status</h3>
+							<div class="search_form">
+								<form>
+									<input type="text" name="search">
+									<button type="submit">Ok</button>
+								</form>
+							</div><!--search_form end-->
+							<h3>Setting</h3>
+							<ul class="us-links">
+								<li><a href="profile-account-setting.html" title="">Account Setting</a></li>
+								<li><a href="#" title="">Privacy</a></li>
+								<li><a href="#" title="">Faqs</a></li>
+								<li><a href="#" title="">Terms & Conditions</a></li>
+							</ul>
+							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
+						</div><!--user-account-settingss end-->
+					</div>
+				</div><!--header-data end-->
+			</div>
+		</header><!--header end-->
+
+	{% block content %}
+	{% endblock content %}
+
+
+
+
+		<div class="post-popup pst-pj">
+			<div class="post-project">
+				<h3>Post a project</h3>
+				<div class="post-project-fields">
+					<form>
+						<div class="row">
+							<div class="col-lg-12">
+								<input type="text" name="title" placeholder="Title">
+							</div>
+							<div class="col-lg-12">
+								<div class="inp-field">
+									<select>
+										<option>Category</option>
+										<option>Category 1</option>
+										<option>Category 2</option>
+										<option>Category 3</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<input type="text" name="skills" placeholder="Skills">
+							</div>
+							<div class="col-lg-12">
+								<div class="price-sec">
+									<div class="price-br">
+										<input type="text" name="price1" placeholder="Price">
+										<i class="la la-dollar"></i>
+									</div>
+									<span>To</span>
+									<div class="price-br">
+										<input type="text" name="price1" placeholder="Price">
+										<i class="la la-dollar"></i>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<textarea name="description" placeholder="Description"></textarea>
+							</div>
+							<div class="col-lg-12">
+								<ul>
+									<li><button class="active" type="submit" value="post">Post</button></li>
+									<li><a href="#" title="">Cancel</a></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div><!--post-project-fields end-->
+				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+			</div><!--post-project end-->
+		</div><!--post-project-popup end-->
+
+		<div class="post-popup job_post">
+			<div class="post-project">
+				<h3>Post a job</h3>
+				<div class="post-project-fields">
+					<form>
+						<div class="row">
+							<div class="col-lg-12">
+								<input type="text" name="title" placeholder="Title">
+							</div>
+							<div class="col-lg-12">
+								<div class="inp-field">
+									<select>
+										<option>Category</option>
+										<option>Category 1</option>
+										<option>Category 2</option>
+										<option>Category 3</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<input type="text" name="skills" placeholder="Skills">
+							</div>
+							<div class="col-lg-6">
+								<div class="price-br">
+									<input type="text" name="price1" placeholder="Price">
+									<i class="la la-dollar"></i>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="inp-field">
+									<select>
+										<option>Full Time</option>
+										<option>Half time</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<textarea name="description" placeholder="Description"></textarea>
+							</div>
+							<div class="col-lg-12">
+								<ul>
+									<li><button class="active" type="submit" value="post">Post</button></li>
+									<li><a href="#" title="">Cancel</a></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div><!--post-project-fields end-->
+				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+			</div><!--post-project end-->
+		</div><!--post-project-popup end-->
+
+
+
+		<div class="chatbox-list">
+			<div class="chatbox">
+				<div class="chat-mg">
+					<a href="#" title=""><img src="{% static 'img/usr-img1.png'%}" alt=""></a>
+					<span>2</span>
+				</div>
+				<div class="conversation-box">
+					<div class="con-title mg-3">
+						<div class="chat-user-info">
+							<img src="{% static 'img/us-img1.png'%}" alt="">
+							<h3>John Doe <span class="status-info"></span></h3>
+						</div>
+						<div class="st-icons">
+							<a href="#" title=""><i class="la la-cog"></i></a>
+							<a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
+							<a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
+						</div>
+					</div>
+					<div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
+						<div class="chat-msg">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+							<span>Sat, Aug 23, 1:10 PM</span>
+						</div>
+						<div class="date-nd">
+							<span>Sunday, August 24</span>
+						</div>
+						<div class="chat-msg st2">
+							<p>Cras ultricies ligula.</p>
+							<span>5 minutes ago</span>
+						</div>
+						<div class="chat-msg">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+							<span>Sat, Aug 23, 1:10 PM</span>
+						</div>
+					</div><!--chat-list end-->
+					<div class="typing-msg">
+						<form>
+							<textarea placeholder="Type a message here"></textarea>
+							<button type="submit"><i class="fa fa-send"></i></button>
+						</form>
+						<ul class="ft-options">
+							<li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
+							<li><a href="#" title=""><i class="la la-camera"></i></a></li>
+							<li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
+						</ul>
+					</div><!--typing-msg end-->
+				</div><!--chat-history end-->
+			</div>
+			<div class="chatbox">
+				<div class="chat-mg">
+					<a href="#" title=""><img src="{% static 'img/usr-img2.png'%}" alt=""></a>
+				</div>
+				<div class="conversation-box">
+					<div class="con-title mg-3">
+						<div class="chat-user-info">
+							<img src="{% static 'img/us-img1.png'%}" alt="">
+							<h3>John Doe <span class="status-info"></span></h3>
+						</div>
+						<div class="st-icons">
+							<a href="#" title=""><i class="la la-cog"></i></a>
+							<a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
+							<a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
+						</div>
+					</div>
+					<div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
+						<div class="chat-msg">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+							<span>Sat, Aug 23, 1:10 PM</span>
+						</div>
+						<div class="date-nd">
+							<span>Sunday, August 24</span>
+						</div>
+						<div class="chat-msg st2">
+							<p>Cras ultricies ligula.</p>
+							<span>5 minutes ago</span>
+						</div>
+						<div class="chat-msg">
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
+							<span>Sat, Aug 23, 1:10 PM</span>
+						</div>
+					</div><!--chat-list end-->
+					<div class="typing-msg">
+						<form>
+							<textarea placeholder="Type a message here"></textarea>
+							<button type="submit"><i class="fa fa-send"></i></button>
+						</form>
+						<ul class="ft-options">
+							<li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
+							<li><a href="#" title=""><i class="la la-camera"></i></a></li>
+							<li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
+						</ul>
+					</div><!--typing-msg end-->
+				</div><!--chat-history end-->
+			</div>
+			<div class="chatbox">
+				<div class="chat-mg bx">
+					<a href="#" title=""><img src="{% static 'icons/chat.png'%}" alt=""></a>
+					<span>2</span>
+				</div>
+				<div class="conversation-box">
+					<div class="con-title">
+						<h3>Messages</h3>
+						<a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
+					</div>
+					<div class="chat-list">
+						<div class="conv-list active">
+							<div class="usrr-pic">
+								<img src="{% static 'img/usy1.png'%}" alt="">
+								<span class="active-status activee"></span>
+							</div>
+							<div class="usy-info">
+								<h3>John Doe</h3>
+								<span>Lorem ipsum dolor <img src="{% static 'icons/smley.png'%}" alt=""></span>
+							</div>
+							<div class="ct-time">
+								<span>1:55 PM</span>
+							</div>
+							<span class="msg-numbers">2</span>
+						</div>
+						<div class="conv-list">
+							<div class="usrr-pic">
+								<img src="{% static 'img/usy2.png'%}" alt="">
+							</div>
+							<div class="usy-info">
+								<h3>John Doe</h3>
+								<span>Lorem ipsum dolor <img src="{% static 'icons/smley.png'%}" alt=""></span>
+							</div>
+							<div class="ct-time">
+								<span>11:39 PM</span>
+							</div>
+						</div>
+						<div class="conv-list">
+							<div class="usrr-pic">
+								<img src="{% static 'img/usy3.png'%}" alt="">
+							</div>
+							<div class="usy-info">
+								<h3>John Doe</h3>
+								<span>Lorem ipsum dolor <img src="{% static 'icons/smley.png'%}" alt=""></span>
+							</div>
+							<div class="ct-time">
+								<span>0.28 AM</span>
+							</div>
+						</div>
+					</div><!--chat-list end-->
+				</div><!--conversation-box end-->
+			</div>
+		</div><!--chatbox-list end-->
+
+	</div><!--theme-layout end-->
+
+	<footer >
+			<div class="footy-sec mn no-margin">
+				<div class="container">
+					<ul>
+						<li><a href="{% url 'help_center'%}" title="">Help Center</a></li>
+						<li><a href="{% url 'about_company'%}" title="">About</a></li>
+						<li><a href="#" title="">Privacy Policy</a></li>
+						<li><a href="#" title="">Community Guidelines</a></li>
+						<li><a href="#" title="">Cookies Policy</a></li>
+						<li><a href="#" title="">Career</a></li>
+						<li><a href="{% url 'forum'%}}l" title="">Forum</a></li>
+						<li><a href="#" title="">Language</a></li>
+						<li><a href="#" title="">Copyright Policy</a></li>
+					</ul>
+					<p><img src="{static 'icons/copy-icon2.png'%}" alt="">Copyright 2019</p>
+					<img class="fl-rgt" src="icons/logo2.png" alt="">
+				</div>
+			</div>
+		</footer><!--footer end-->
+
+		<div class="overview-box" id="overview-box">
+			<div class="overview-edit">
+				<h3>Overview</h3>
+				<span>5000 character left</span>
+				<form>
+					<textarea></textarea>
+					<button type="submit" class="save">Save</button>
+					<button type="submit" class="cancel">Cancel</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+
+		<div class="overview-box" id="experience-box">
+			<div class="overview-edit">
+				<h3>Experience</h3>
+				<form>
+					<input type="text" name="subject" placeholder="Subject">
+					<textarea></textarea>
+					<button type="submit" class="save">Save</button>
+					<button type="submit" class="save-add">Save & Add More</button>
+					<button type="submit" class="cancel">Cancel</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+		<div class="overview-box" id="education-box">
+			<div class="overview-edit">
+				<h3>Education</h3>
+				<form>
+					<input type="text" name="school" placeholder="School / University">
+					<div class="datepicky">
+						<div class="row">
+							<div class="col-lg-6 no-left-pd">
+								<div class="datefm">
+									<input type="text" name="from" placeholder="From" class="datepicker">
+									<i class="fa fa-calendar"></i>
+								</div>
+							</div>
+							<div class="col-lg-6 no-righ-pd">
+								<div class="datefm">
+									<input type="text" name="to" placeholder="To" class="datepicker">
+									<i class="fa fa-calendar"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<input type="text" name="degree" placeholder="Degree">
+					<textarea placeholder="Description"></textarea>
+					<button type="submit" class="save">Save</button>
+					<button type="submit" class="save-add">Save & Add More</button>
+					<button type="submit" class="cancel">Cancel</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+		<div class="overview-box" id="location-box">
+			<div class="overview-edit">
+				<h3>Location</h3>
+				<form>
+					<div class="datefm">
+						<select>
+							<option>Country</option>
+							<option value="pakistan">Pakistan</option>
+							<option value="england">England</option>
+							<option value="india">India</option>
+							<option value="usa">United Sates</option>
+						</select>
+						<i class="fa fa-globe"></i>
+					</div>
+					<div class="datefm">
+						<select>
+							<option>City</option>
+							<option value="london">London</option>
+							<option value="new-york">New York</option>
+							<option value="sydney">Sydney</option>
+							<option value="chicago">Chicago</option>
+						</select>
+						<i class="fa fa-map-marker"></i>
+					</div>
+					<button type="submit" class="save">Save</button>
+					<button type="submit" class="cancel">Cancel</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+		<div class="overview-box" id="skills-box">
+			<div class="overview-edit">
+				<h3>Skills</h3>
+				<ul>
+					<li><a href="#" title="" class="skl-name">HTML</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
+					<li><a href="#" title="" class="skl-name">php</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
+					<li><a href="#" title="" class="skl-name">css</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
+				</ul>
+				<form>
+					<input type="text" name="skills" placeholder="Skills">
+					<button type="submit" class="save">Save</button>
+					<button type="submit" class="save-add">Save & Add More</button>
+					<button type="submit" class="cancel">Cancel</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+		<div class="overview-box" id="create-portfolio">
+			<div class="overview-edit">
+				<h3>Create Portfolio</h3>
+				<form>
+					<input type="text" name="pf-name" placeholder="Portfolio Name">
+					<div class="file-submit">
+						<input type="file" id="file">
+						<label for="file">Choose File</label>
+					</div>
+					<div class="pf-img">
+						<img src="{% static 'img/np.png' %}" alt="">
+					</div>
+					<input type="text" name="website-url" placeholder="htp://www.example.com">
+					<button type="submit" class="save">Save</button>
+					<button type="submit" class="cancel">Cancel</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+
+
+
+
+<script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/popper.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/slick.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/scrollbar.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.mCustomScrollbar1.js' %}">
+
+</script><script type="text/javascript" src="{% static 'js/script.js'%}"></script>
+
+</body>
+</html>
