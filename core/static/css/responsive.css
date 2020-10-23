@@ -112,7 +112,7 @@
 	.forum-links ul li {margin-right: 20px;}
 	.forum-links ul li a {font-size: 13px;}
 	.forum-links-btn {display: block;}
-	.forum-links {position: fixed;top: 0;left: 0;width: 240px;background-color: ;height: 100%;padding: 0 20px;opacity: 0;visibility: hidden;}
+	.forum-links {position: fixed;top: 0;left: 0;width: 240px;background-color: #01400b;height: 100%;padding: 0 20px;opacity: 0;visibility: hidden;}
 	.forum-links ul li {float: left;width: 100%;padding: 0;margin-bottom: 20px;}
 	.forum-links ul li a {color: #fff;font-size: 16px;}
 	.forum-questions .usr_quest {width: 100%;padding: 0;}
