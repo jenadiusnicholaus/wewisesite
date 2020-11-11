@@ -6844,3 +6844,23 @@ ul#myTab {
     font-size: 14px;
     color: #666666;
 }
+#chat-items{
+	margin-right: 100px;
+}
+
+
+#chat-items li{
+	background-color: grey;
+	justify-content: baseline;
+	padding: 12px;
+	border-radius: 20px;
+	margin-top: 20px;
+	margin-right: 300px;
+	margin-left: 20px;
+}
+
+
+#form label{
+	display: none;
+}
+

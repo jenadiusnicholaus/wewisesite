@@ -43,19 +43,34 @@
 									<li data-tab="tab-2"><a href="#" title="">Sign up</a></li>
 								</ul>
 								<div class="sign_in_sec current" id="tab-1">
-
+								{% if messages %}
+									{% for message in messages %}
+										{% if message.tags == 'info'%}
+										<div class="alert alert-success alert-dismissible" id="notify">
+											{{message}}
+										</div>
+										{% elif message.tags == 'error'%}
+											<div class="alert alert-danger alert-dismissible" id="notify">
+												<b style="font-size: 13px;">{{message}}</b>
+											</div>
+										{% endif%}
+									{% endfor%}
+								{% endif%}
 									<h3>Sign in</h3>
-									<form>
+									<form method="POST">
+										{% csrf_token %}
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="text" name="username" placeholder="Username">
+													{{form.username}}
+													<!-- <input type="text" name="username" placeholder="Username"> -->
 													<i class="la la-user"></i>
 												</div><!--sn-field end-->
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
-													<input type="password" name="password" placeholder="Password">
+													{{form.password}}
+													<!-- <input type="password" name="password" placeholder="Password"> -->
 													<i class="la la-lock"></i>
 												</div>
 											</div>
@@ -73,14 +88,14 @@
 											</div>
 											<div class="col-lg-12 no-pdd">
 												<button type="submit" value="submit">Sign in</button>
-												<a href="{% url 'homepage' %}" value="submit">sign in</a>
+												<!-- <a href="{% url 'login' %}" value="submit">sign in</a> -->
 											</div>
 										</div>
 									</form>
 									<div class="login-resources">
 										<h4>Login Via Social Account</h4>
 										<ul>
-											<li><a href="#" title="" class="fb"><i class="la la-facebook"></i>Login Via Facebook</a></li>
+											<li><a href="{% url 'social:begin' 'facebook' %}" title="" class="fb"><i class="la la-facebook"></i>Login Via Facebook</a></li>
 											<li><a href="#" title="" class="tw"><i class="la la-twitter"></i>Login Via Twitter</a></li>
 										</ul>
 									</div><!--login-resources end-->

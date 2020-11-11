@@ -1,10 +1,8 @@
 from django.shortcuts import render
-
-
-# Create your views here.
 from django.views.generic.base import View
+from django.contrib.auth.decorators import login_required
 
-
+@login_required(login_url='/login')
 def homepage(request):
     return render(request, template_name='homepage.html')
 

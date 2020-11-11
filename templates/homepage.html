@@ -17,8 +17,8 @@
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
-												<h3>John Doe</h3>
-												<span>Graphic Designer at Self Employed</span>
+												<h3>{{ request.user.username }}</h3>
+												<span>{{ request.user.profession_type }}</span>
 											</div>
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">

@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{%load static %}
+{%block content %}
+
+<div class="col-lg-8 col-md-12 no-pdd pull-center">
+    <div class="msgs-list">
+        <div class="msg-title">
+            <h3>Messages</h3>
+            <ul>
+                <li><a href="#" title=""><i class="fa fa-cog"></i></a></li>
+                <li><a href="#" title=""><i class="fa fa-ellipsis-v"></i></a></li>
+            </ul>
+        </div><!--msg-title end-->
+        
+        <div class="messages-list">
+<!-- This block displays all Thread objects which are belong to the logged in user as the first or second user -->
+            <ul>
+                {% for user in users %}
+                 {% if user.first == request.user%}
+                <a href="{% url 'thread' user.second %}">
+                    <li class="active">
+                        <div class="usr-msg-details">
+                            <div class="usr-ms-img">
+                                <img src="{{ user.second.profile_pc.url }}" alt="loading..">
+                                <span class="msg-status"></span>
+                            </div>
+                            <div class="usr-mg-info">
+                                {% if user.first == request.user%}
+                                <h3>{{user.second}}</h3>
+                                {% else %}
+                                <h3>{{user.first}}</h3>
+                                {% endif %}
+                                <p>Lorem ipsum dolor <img src="{% static 'img/smley.png' %}" alt=""></p>
+                            </div><!--usr-mg-info end-->
+                            <span class="posted_time">1:55 PM</span>
+                            <span class="msg-notifc">1</span>
+                        </div><!--usr-msg-details end-->
+                    </li>
+                </a>
+                {% elif  user.second == request.user %}
+                <a href="{% url 'thread' user.first %}">
+                    <li class="active">
+                        <div class="usr-msg-details">
+                            <div class="usr-ms-img">
+                                <img src="{{ user.first.profile_pc.url }}" alt="loading..">
+                                <span class="msg-status"></span>
+                            </div>
+                            <div class="usr-mg-info">
+                                {% if user.first == request.user%}
+                                <h3>{{user.second}}</h3>
+                                {% else %}
+                                <h3>{{user.first}}</h3>
+                                {% endif %}
+                                <p>Lorem ipsum dolor <img src="{% static 'img/smley.png' %}" alt=""></p>
+                            </div><!--usr-mg-info end-->
+                            <span class="posted_time">1:55 PM</span>
+                            <span class="msg-notifc">1</span>
+                        </div><!--usr-msg-details end-->
+                    </li>
+                </a>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div><!--messages-list end-->
+    </div><!--msgs-list end-->
+</div>
+
+{% endblock content %}
