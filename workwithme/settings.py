@@ -25,7 +25,7 @@ SECRET_KEY = '7ew_pxx%unj+!+)%g!ol((^bi+ns=tc_ed^!f3e*&h241#t%+='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.sites',
 
     # third part
@@ -45,8 +46,12 @@ INSTALLED_APPS = [
     # own app
     'core',
     'authentication',
-
     'company',
+    'social_django',
+    'channels',
+    'message',
+    'notifications',
+
 ]
 
 MIDDLEWARE = [
@@ -57,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+         #social auth config
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'workwithme.urls'
@@ -73,12 +80,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                         #social auth config
+                'social_django.context_processors.backends', 
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'workwithme.wsgi.application'
+ASGI_APPLICATION = 'workwithme.routing.application'
 
 
 # Database
@@ -135,10 +146,14 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 # One month
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 MEDIA_URL = '/media/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
 
 # Or set up the EMAIL_* settings so that Django can send emails:
 EMAIL_HOST = "smtp.gmail.com"
@@ -152,3 +167,29 @@ EMAIL_USE_TLS = True
 
 SITE_ID = 2
 
+
+
+
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1661155190722151'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '68ecfbb72f058aaf31042437fff8e330'  # App Secret
+
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+    },
+}

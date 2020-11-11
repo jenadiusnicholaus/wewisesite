@@ -17,12 +17,18 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('', include('authentication.urls')),
+
     path('', include('company.urls')),
+    path('messages/', include('message.urls')),
+    path('messages/', include('notifications.urls')),
+    path('oauth/', include('social_django.urls', namespace='social')),
 
     ]
 if settings.DEBUG:
@@ -32,5 +38,4 @@ if settings.DEBUG:
                           document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
-
 

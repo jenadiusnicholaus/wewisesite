@@ -17,12 +17,17 @@
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
+<<<<<<< HEAD
 												{% if user.is_authenticated %}
 												<h3>{{ user.username }}</h3>
 												{% else %}
 												 <h3>login</h3>
 												{% endif %}
 												<span>Graphic Designer at Self Employed</span>
+=======
+												<h3>{{ request.user.username }}</h3>
+												<span>{{ request.user.profession_type }}</span>
+>>>>>>> e00114349fcc8b8ce83c2fd30dd741cd885322e3
 											</div>
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">

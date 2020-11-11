@@ -79,7 +79,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="{% url 'massages'%}" title="" class="not-box-openm">
+								<a href="{% url 'inbox' %}" title="" class="not-box-openm">
 									<span><img src="{% static 'icons/icon6.png'%}" alt=""></span>
 									Messages
 								</a>
@@ -136,42 +136,17 @@
 										<a href="#" title="">Clear all</a>
 									</div>
 									<div class="nott-list">
+									{% for old_notification in old_notifications %}
 										<div class="notfication-details">
 							  				<div class="noty-user-img">
 							  					<img src="{% static 'img/ny-img1.png'%}" alt="">
 							  				</div>
 							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
+							  					<h3><a href="#" title="">Jassica William</a> {{old_notification.get_group_display}}</h3>
 							  					<span>2 min ago</span>
 							  				</div><!--notification-info -->
 						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="{% static 'img/ny-img2.png'%}" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="{% static 'img/ny-img3.png'%}" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="{% static 'img/ny-img2.png'%}" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
+									{% endfor %}
 						  				<div class="view-all-nots">
 						  					<a href="#" title="">View All Notification</a>
 						  				</div>
@@ -225,7 +200,9 @@
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
+
 							<h3 class="tc"><a href="{% url 'sign_out'%}" title="">Logout</a></h3>
+
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
@@ -651,6 +628,66 @@
 
 </script><script type="text/javascript" src="{% static 'js/script.js'%}"></script>
 
+<script src="{% static 'js/notificationObj.js' %}"></script>
 
+
+
+<script>
+
+  $('#alertsDropdown').click(function(){
+    const tmpObjsHTML = $('#newNotifications').html()
+    $.ajax({
+      method:'post',
+      url:'{% url "AJAXMarkNotificationAsReaded" %}',
+      data:{
+        csrfmiddlewaretoken:'{{csrf_token}}'
+      },
+      success:function(data){
+        $('#newNotifications').html('')
+        $('#cheat').html(tmpObjsHTML)
+        $('#newNotificationCount').text(data.unreaded_notification_count)
+      },
+      error:function(data){
+        console.log('ERR',data)
+      }
+    })
+  })
+
+  var ws = new WebSocket('ws://127.0.0.1:8000/ws/notification/{{request.user.id}}/')
+
+  ws.onopen = function(event){
+    console.log('opened', event);
+  }
+
+  ws.onmessage = function(event){
+    console.log('message', event);
+    var data = JSON.parse(event.data);
+    
+    var old_notifications = JSON.parse(data.old_notifications);
+    var unreaded_notifications = JSON.parse(data.unreaded_notifications);
+    var unreaded_notification_count = data.unreaded_notification_count;
+
+    $('#newNotifications').html('')
+    unreaded_notifications.forEach(element => {
+      var obj = new NotificationObj(element.fields)
+      $('#newNotifications').append(obj.drawNotification())
+    });
+
+    $('#newNotificationCount').text(unreaded_notification_count)
+    console.log('loaded')
+  }
+
+  ws.onclose = function(event){
+    console.log('close', event);
+  }
+
+  ws.onerror = function(event){
+    console.log('error', event);
+  }
+
+  // window.setInterval(function(){
+  //   loadNotifications();
+  // }, 1000);
+</script>
 </body>
 </html>
