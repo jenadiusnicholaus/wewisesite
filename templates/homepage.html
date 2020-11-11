@@ -17,18 +17,24 @@
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
-												<h3>John Doe</h3>
+												{% if user.is_authenticated %}
+												<h3>{{ user.username }}</h3>
+												{% else %}
+												 <h3>login</h3>
+												{% endif %}
 												<span>Graphic Designer at Self Employed</span>
 											</div>
 										</div><!--user-profile end-->
 										<ul class="user-fw-status">
 											<li>
 												<h4>Following</h4>
-												<span>34</span>
+												{% if user.is_authenticated %}
+												<span>{{ user.userprofile.get_following}}</span>
+												{% endif %}
 											</li>
 											<li>
 												<h4>Followers</h4>
-												<span>155</span>
+												<span>{{ user.userprofile.get_following}}</span>
 											</li>
 											<li>
 												<a href="{% url 'my_profile'%}" title="">View Profile</a>
@@ -113,6 +119,23 @@
 								</div><!--main-left-sidebar end-->
 							</div>
 							<div class="col-lg-6 col-md-8 no-pd">
+								<h5> {% if messages %}
+										<ul class="messages">
+											{% for message in messages %}
+											{% if message.tags %}
+											<div style="padding:8px;" class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+												{% endif %}
+												<button style="outline: none; border:none; ;  margin-left:49px; padding:0px;" type="button" class="btn btn-default btn-sm" data-dismiss="alert" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<li style="padding-right:0px; font-size:15px; float:left;" class="info">{{ message }}</li>
+
+
+											</div>
+											{% endfor %}
+										</ul>
+										{% endif %}
+									</h5>
 								<div class="main-ws-sec">
 									<div class="post-topbar">
 										<div class="user-picy">

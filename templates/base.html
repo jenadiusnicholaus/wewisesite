@@ -63,7 +63,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="{% url 'users_profile'%}" title="">
+								<a href="{% url 'profiles'%}" title="">
 									<span><img src="{% static 'icons/icon4.png'%}" alt=""></span>
 									Profiles
 								</a>
@@ -225,7 +225,7 @@
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
-							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
+							<h3 class="tc"><a href="{% url 'sign_out'%}" title="">Logout</a></h3>
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
@@ -650,6 +650,7 @@
 <script type="text/javascript" src="{% static 'js/jquery.mCustomScrollbar1.js' %}">
 
 </script><script type="text/javascript" src="{% static 'js/script.js'%}"></script>
+
 
 </body>
 </html>

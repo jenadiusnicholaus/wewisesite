@@ -1,10 +1,9 @@
 from  django.urls import path
 from . import views
-
+# app_name ='core'
 urlpatterns = [
-path('',views.signin, name= 'sigin'),
+path('login',views.signin, name= 'sigin'),
 path('homepage/',views.homepage, name= 'homepage'),
-path('my_profile/',views.my_profile, name= 'my_profile'),
 path('users_profile/',views.users_profile, name= 'users_profile'),
 path('users_profile_details/',views.users_profile_details, name= 'users_profile_details'),
 

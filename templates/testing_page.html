@@ -1,0 +1,34 @@
+
+
+<!doctype html>
+<html lang="en">
+{% load static%}
+  <style>
+    .btn {
+  font-size: 14px;
+  margin: 8px;
+  padding: 0 15px;
+}
+</style>
+<body>
+  <input type="button" id="submit" value="Submit" class="btn">
+</body>
+
+<script type="text/javascript" src="{% static 'js/jquery.js'%}"></script>
+<script>
+
+$(document).ready(function() {
+  $('#submit').click(function() {
+    $(this).val('Processing...');
+  })
+});
+</script>
+</html>
+
+
+
+
+
+
+
+

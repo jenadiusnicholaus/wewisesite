@@ -4,4 +4,4 @@ from .models import *
 # Register your models here.
 admin.site.register(JobType)
 admin.site.register(Jobs)
-admin.site.register(Suggestion)
+
