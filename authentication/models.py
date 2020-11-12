@@ -62,8 +62,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, ):
-
-    profile_pc = models.ImageField(upload_to= 'ProfilePics',max_length=100, null=True, blank=True, default='media/default.png')
+    profile_pc = models.ImageField(upload_to='ProfilePics', max_length=100, null=True, blank=True,
+                                   default='media/default.png')
     username = models.CharField(max_length=16, unique=True, blank=True, null=True)
     email = models.EmailField(db_index=True, unique=True)
     first_name = models.CharField(null=True, max_length=20)
@@ -87,7 +87,6 @@ class User(AbstractBaseUser, PermissionsMixin, ):
         This string is used when a `User` is printed in the console.
         """
 
-
         return str(self.username)
 
     def get_short_name(self):
@@ -109,10 +108,6 @@ class UserProfile(models.Model):
     # TODO  our next todo: we need to apply  AI here,
     #  This type of data would be seen as descriptive, however, user profiling is improved by
     #  including statistical data gained from monitoring behavioural app data.
-
-    profile_pc = models.ImageField(max_length=300, upload_to='profile_pic', null=True, blank=True)
-
-    
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     interests = models.CharField(max_length=20, null=True, blank=True)
@@ -248,7 +243,6 @@ class UserAddress(models.Model):
         verbose_name_plural = 'User address'
 
     def __str__(self):
-
         return str(self.user.username)
 
 
@@ -275,4 +269,4 @@ class UserPortfolio(models.Model):
         verbose_name_plural = 'User portfolio'
 
     def __str__(self):
-        return str( self.user.username)
+        return str(self.user.username)

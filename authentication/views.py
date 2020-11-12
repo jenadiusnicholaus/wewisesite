@@ -34,8 +34,8 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         # return redirect('home')
-        messages.success(request, 'welcom to wewize.com, login now')
-        return redirect('/')
+        messages.success(request, 'Welcome to wewize.com, login now')
+        return redirect('sign_in')
     else:
         return HttpResponse('Activation link is invalid!')
 
@@ -74,14 +74,14 @@ class UserSignUp(View):
                 email_to_send.send()
                 messages.warning(self.request, f'activate your account at ****{email[3:]}')
 
-                return redirect('/')
+                return redirect('sign_in')
             else:
                 messages.warning(self.request, 'Looks like a username with that email or password already exists')
-                return redirect("/")
+                return redirect("sign_in")
         else:
             print('from not valid')
             messages.warning(self.request, 'Form not valid')
-        return redirect('/')
+        return redirect('sign_in')
 
 
 class UserSignIn(View):
@@ -105,17 +105,17 @@ class UserSignIn(View):
                         request.session.set_expiry(30.4368)
                         login(request, user_auth)
                         messages.info(self.request, 'welcome home ')
-                        return redirect('homepage')
+                        return redirect('/')
                     messages.info(self.request, 'welcome home ')
-                    return redirect('homepage')
+                    return redirect('/')
                 else:
                     messages.info(self.request, 'Your account was inactive.Try to activate your account now')
-                    return redirect('/')
+                    return redirect('sign_in')
             else:
                 print("Someone tried to login and failed.")
                 print("They used username: {} and password: {}".format(email, password))
                 messages.warning(self.request, 'Invalid login details given,')
-                return redirect("/")
+                return redirect("sign_in")
 
 
 def user_sign_out(request, ):
@@ -123,7 +123,7 @@ def user_sign_out(request, ):
     logout(request)
     # Return to homepage.
     messages.warning(request, 'Your signed Out, Login again')
-    return redirect('/')
+    return redirect('sign_in')
 
 
 class ProfilesListView(ListView):

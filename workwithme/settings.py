@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '7ew_pxx%unj+!+)%g!ol((^bi+ns=tc_ed^!f3e*&h241#t%+='
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -62,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-         #social auth config
+    # social auth config
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
@@ -80,8 +78,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                         #social auth config
-                'social_django.context_processors.backends', 
+                # social auth config
+                'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
         },
@@ -90,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'workwithme.wsgi.application'
 ASGI_APPLICATION = 'workwithme.routing.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -101,7 +98,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -136,11 +132,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 # One month
-
-
-
-
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # One month
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -152,9 +144,6 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-
-
 # Or set up the EMAIL_* settings so that Django can send emails:
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
@@ -162,14 +151,9 @@ EMAIL_HOST_USER = "ucode888@gmail.com"
 EMAIL_HOST_PASSWORD = "jinadius@15"
 EMAIL_USE_TLS = True
 
-
 # configure site
 
 SITE_ID = 2
-
-
-
-
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
@@ -179,11 +163,12 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-
 SOCIAL_AUTH_FACEBOOK_KEY = '1661155190722151'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '68ecfbb72f058aaf31042437fff8e330'  # App Secret
 
-
+LOGIN_URL = 'sign_in'
+LOGOUT_OUT = 'signed_out'
+LOGIN_REDIRECT_URL = 'homepage'
 
 CHANNEL_LAYERS = {
     "default": {

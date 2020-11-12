@@ -5,11 +5,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 urlpatterns=[
     path('my_profile/',views.my_profile, name= 'my_profile'),
-
-
-
     path('signed_up/', views.UserSignUp.as_view(), name='sign_up'),
-    path('', views.UserSignIn.as_view(), name='sign_in'),
+    path('sign_in/', views.UserSignIn.as_view(), name='sign_in'),
     path('signed_out/', views.user_sign_out, name='sign_out'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('profiles', views.ProfilesListView.as_view(), name='profiles'),
