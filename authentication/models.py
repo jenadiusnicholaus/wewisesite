@@ -37,6 +37,7 @@ class UserManager(BaseUserManager):
         user = self.model(email=self.normalize_email(email), **extra_fields)
 
         user.set_password(password)
+        user.is_superuser = False
         user.is_active = False
         user.is_staff = False
         user.save(using=self._db)
@@ -54,6 +55,7 @@ class UserManager(BaseUserManager):
             raise TypeError('Superusers must have a password.')
 
         user = self.create_user(email, password=password, **extra_fields)
+        user.is_active = True
         user.is_superuser = True
         user.is_staff = True
         user.save()

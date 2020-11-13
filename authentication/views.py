@@ -1,4 +1,3 @@
-
 from datetime import timedelta
 
 from django.contrib.auth.forms import PasswordResetForm
@@ -21,9 +20,10 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
 from company.forms import CompanyForm
+from validate_email import validate_email
 
 
-def activate(request, uidb64, token):
+def activate(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -32,7 +32,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        login(request, user, backend)
         # return redirect('home')
         messages.success(request, 'Welcome to wewize.com, login now')
         return redirect('sign_in')
@@ -49,7 +49,14 @@ class UserSignUp(View):
             profession = form.cleaned_data.get('profession')
             password = form.cleaned_data.get('password')
             password2 = form.cleaned_data.get('repeat_password')
-
+            # terms agreements
+            # try to check if the password match
+            # if password != password2:
+            #     messages.warning(self.request, f'your Password doesnt match')
+            #     return redirect('sign_in')
+            if not validate_email(email):
+                messages.info(self.request, 'Enter valid email')
+                return redirect('sign_in')
             # try to check if the user does exit()
             if not (User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
                 # if password == password2:
@@ -59,7 +66,7 @@ class UserSignUp(View):
                 """ Here i can decide to  tell the user to login or send Email for account activation"""
                 current_site = get_current_site(request)
                 mail_subject = 'Activate your account now'
-                message = render_to_string('account_activate_email.html', {
+                message = render_to_string('authentication/account_activate_email.html', {
                     'user': user,
                     'domain': current_site.domain,
                     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -97,17 +104,20 @@ class UserSignIn(View):
             email = request.POST.get('email')
             password = request.POST.get('password')
             remember_me = request.POST.get('remember_me')
-
             user_auth = authenticate(email=email, password=password)
-            if user_auth:
+            if not validate_email(email):
+                messages.info(self.request, 'Enter valid email')
+                return redirect('sign_in')
+            elif user_auth:
+                # we need to check if the auth_user is activate to our system
                 if user_auth.is_active:
-                    if not request.POST.get(remember_me, None):
-                        request.session.set_expiry(30.4368)
-                        login(request, user_auth)
-                        messages.info(self.request, 'welcome home ')
-                        return redirect('/')
+                    # if not request.POST.get('remember_me', None):
+                    # make the session to end in one mouth
+                    request.session.set_expiry(30.4368)
+                    login(request, user_auth)
                     messages.info(self.request, 'welcome home ')
                     return redirect('/')
+
                 else:
                     messages.info(self.request, 'Your account was inactive.Try to activate your account now')
                     return redirect('sign_in')
@@ -163,9 +173,9 @@ def password_reset_request(request):
                 messages.info(request, 'form not valid')
                 print(password_reset_form)
                 return render(request=request, template_name="authentication/password_reset.html",
-                  context={"password_reset_form": password_reset_form})
+                              context={"password_reset_form": password_reset_form})
     password_reset_form = PasswordResetForm()
-    messages.info(request, 'Nothing done')
+    messages.info(request, '  Enter email address to reset your password now')
 
     return render(request=request, template_name="authentication/password_reset.html",
                   context={"password_reset_form": password_reset_form})

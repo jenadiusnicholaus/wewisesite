@@ -4,7 +4,7 @@ from django.views.generic.base import View
 from django.contrib.auth.decorators import login_required
 
 
-# @login_required(login_url='sign_in')
+@login_required(login_url='sign_in')
 def homepage(request):
     return render(request, template_name='homepage.html')
 

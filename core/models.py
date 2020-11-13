@@ -34,6 +34,3 @@ class Jobs(models.Model):
         return self.job_title
 
 
-class CompanyOverview(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    description = models.TextField()

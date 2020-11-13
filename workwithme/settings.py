@@ -150,6 +150,8 @@ EMAIL_PORT = "587"
 EMAIL_HOST_USER = "ucode888@gmail.com"
 EMAIL_HOST_PASSWORD = "jinadius@15"
 EMAIL_USE_TLS = True
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 
 # configure site
 
