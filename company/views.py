@@ -58,7 +58,7 @@ class CompanySignUp(View):
                     new_company.save()
 
                     # authenticate the company so that to able to login in the future
-                    comp_auth=c()
+                    # comp_auth=c()
 
                     messages.info(self.request, f"welcome home{company_name}")
                     return redirect('/')
