@@ -4,6 +4,8 @@ import os
 
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from validate_email import validate_email
+
 from .forms import CompanyForm
 from .models import Company
 
@@ -43,6 +45,8 @@ class CompanySignUp(View):
             password1 = form.cleaned_data.get('password2')
             password2 = form.cleaned_data.get('password2')
             agreed = request.POST.get('agreed')
+            if not validate_email(company_email):
+                messages.error(request, 'enter validemail address')
             if agreed:
                 if password1 == password2:
                     new_company = Company()
@@ -52,6 +56,10 @@ class CompanySignUp(View):
                     new_company.password1 = get_hashed_password(password1)
                     new_company.agreed_to_terms = True
                     new_company.save()
+
+                    # authenticate the company so that to able to login in the future
+                    comp_auth=c()
+
                     messages.info(self.request, f"welcome home{company_name}")
                     return redirect('/')
                 else:

@@ -8,6 +8,7 @@ class Company(models.Model):
     country = CountryField(max_length=100, null=True, )
     company_email = models.EmailField(max_length=30, null=True, blank=True)
     password1 = models.CharField(max_length=40, null=True)
+    # used just for password confirm
     password2 = models.CharField(max_length=20, null=True, editable=False, blank=True)
     agreed_to_terms = models.BooleanField(default=False)
 
