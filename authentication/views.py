@@ -60,7 +60,7 @@ class UserSignUp(View):
             # try to check if the user does exit()
             if not (User.objects.filter(username=username).exists() or User.objects.filter(email=email).exists()):
                 # if password == password2:
-                User.objects.create_user(email, password, username=username, profession=profession, )
+                User.objects.create_user(email, password, username=username, profession=profession, is_active=False)
                 user = User.objects.get(username=username, email=email)
                 # TODO send email address to login user
                 """ Here i can decide to  tell the user to login or send Email for account activation"""
