@@ -113,7 +113,6 @@ class UserSignIn(View):
                 if user_auth.is_active:
                     # if not request.POST.get('remember_me', None):
                     # make the session to end in one mouth
-                    request.session.set_expiry(30.4368)
                     login(request, user_auth)
                     messages.info(self.request, 'welcome home ')
                     return redirect('/')

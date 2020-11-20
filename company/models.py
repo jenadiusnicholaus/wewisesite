@@ -17,3 +17,8 @@ class Company(models.Model):
 
     def __str__(self):
         return self.company_name
+
+
+class CompanyProfile(models.Model):
+    compsny = models.OneToOneField(Company, on_delete=models.CASCADE, null=True)
+
